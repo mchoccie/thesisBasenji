@@ -381,7 +381,7 @@ def main():
     if options.restart and os.path.isfile(seqs_cov_file):
       print('Skipping existing %s' % seqs_cov_file, file=sys.stderr)
     else:
-      cmd = 'akita_data_read.py'
+      cmd = '/home/017448899/basenji_thesis/bin/akita_data_read.py'
       cmd += ' --crop %d' % options.crop_bp
       cmd += ' -d %s' % options.diagonal_offset
       cmd += ' -k %d' % options.kernel_stddev
@@ -445,20 +445,29 @@ def main():
     while tfr_start <= fold_set_end:
       tfr_stem = '%s/%s-%d' % (tfr_dir, fold_set, tfr_i)
 
-      cmd = 'basenji_data_write.py'
-      cmd += ' -s %d' % tfr_start
-      cmd += ' -e %d' % tfr_end
+      cmd = f"sbatch --partition=gpu --nodes=1 --ntasks=1 --cpus-per-task=32 --mem=96G --time=23:00:00 <<EOF\n"
+      cmd += f"#!/bin/bash\n"
+      cmd += f"python /home/017448899/basenji_thesis/bin/basenji_data_write.py "
+      cmd += f"-s {tfr_start} -e {tfr_end} "
+      cmd += f"{fasta_file} {seqs_bed_file} {seqs_cov_dir} {tfr_stem}.tfr\nEOF"
 
-      # do not use      
-      # if options.umap_bed is not None:
-      #   cmd += ' -u %s' % unmap_npy
-      # if options.umap_set is not None:
-      #   cmd += ' --umap_set %f' % options.umap_set
 
-      cmd += ' %s' % fasta_file
-      cmd += ' %s' % seqs_bed_file
-      cmd += ' %s' % seqs_cov_dir
-      cmd += ' %s.tfr' % tfr_stem
+      # cmd = 'basenji_data_write.py'
+      # cmd += ' -s %d' % tfr_start
+      # cmd += ' -e %d' % tfr_end
+
+      # # do not use      
+      # # if options.umap_bed is not None:
+      # #   cmd += ' -u %s' % unmap_npy
+      # # if options.umap_set is not None:
+      # #   cmd += ' --umap_set %f' % options.umap_set
+
+      
+
+      # cmd += ' %s' % fasta_file
+      # cmd += ' %s' % seqs_bed_file
+      # cmd += ' %s' % seqs_cov_dir
+      # cmd += ' %s.tfr' % tfr_stem
 
       if options.run_local:
         # breaks on some OS

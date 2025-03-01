@@ -1,2 +1,8 @@
 model_best.h5
 data/tfrecords
+akita_train.err
+akita_train.out
+train.slurm
+train2.slurm
+data.slurm
+data2.slurm
