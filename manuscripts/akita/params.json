@@ -6,7 +6,9 @@
         "momentum": 0.99575,
         "loss": "mse",
         "patience": 12,
-        "clip_norm": 10.0
+        "clip_norm": 10.0,
+    "train_epochs_min": 150,
+	"train_epochs_max": 200
     },
     "model": {
         "seq_length": 1048576,

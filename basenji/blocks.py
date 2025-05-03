@@ -1500,6 +1500,7 @@ def concat_position(inputs, transform='abs', power=1, **kwargs):
   return current
 
 def cropping_2d(inputs, cropping, **kwargs):
+  print("This is inputs shapeeeeeeeeeeeeeeeeeeeeeeee {}".format(inputs.shape))
   current = tf.keras.layers.Cropping2D(cropping)(inputs)
   return current
 

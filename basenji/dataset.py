@@ -45,7 +45,8 @@ class SeqDataset:
     self.tfr_pattern = tfr_pattern
 
     # read data parameters
-    data_stats_file = '%s/statistics.json' % self.data_dir
+    #data_stats_file = '%s/statistics.json' % self.data_dir
+    data_stats_file = '/home/017448899/basenji_thesis/manuscripts/akita/data/1m/statistics.json' ##'%s/statistics.json' % self.data_dir
     with open(data_stats_file) as data_stats_open:
       data_stats = json.load(data_stats_open)
     self.seq_length = data_stats['seq_length']

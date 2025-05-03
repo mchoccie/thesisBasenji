@@ -6,3 +6,7 @@ train.slurm
 train2.slurm
 data.slurm
 data2.slurm
+cudnn-linux-x86_64-8.6.0.163_cuda11-archive
+cudnn-linux-x86_64-8.6.0.163_cuda11-archive.tar.xz
+akita_train2.err
+akita_train2.out

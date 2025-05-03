@@ -29,9 +29,18 @@ from tensorflow.keras import mixed_precision
 if tf.__version__[0] == '1':
   tf.compat.v1.enable_eager_execution()
 
+# Define the path to your project
+project_path = "/home/017448899/basenji_thesis"
+
+# Add to sys.path if not already present
+if project_path not in sys.path:
+  sys.path.insert(0, project_path)
+
 from basenji import dataset
 from basenji import seqnn
 from basenji import trainer
+
+
 
 
 """
@@ -73,6 +82,7 @@ def main():
   else:
     params_file = args[0]
     data_dirs = args[1:]
+    print(params_file, data_dirs)
 
   if options.keras_fit and len(data_dirs) > 1:
     print('Cannot use keras fit method with multi-genome training.')
