@@ -445,7 +445,7 @@ def main():
     while tfr_start <= fold_set_end:
       tfr_stem = '%s/%s-%d' % (tfr_dir, fold_set, tfr_i)
 
-      cmd = f"sbatch --partition=gpu --nodes=1 --ntasks=1 --cpus-per-task=32 --mem=96G --time=23:00:00 <<EOF\n"
+      cmd = f"sbatch --partition=mgpuq --nodes=1 --ntasks=1 --cpus-per-task=32 --mem=96G --time=23:00:00 <<EOF\n"
       cmd += f"#!/bin/bash\n"
       cmd += f"python /home/017448899/basenji_thesis/bin/basenji_data_write.py "
       cmd += f"-s {tfr_start} -e {tfr_end} "
